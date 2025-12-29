@@ -1,10 +1,143 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    public GameObject[] obstacles;
+    public Node[,] nodes;
+
+    private Vector3 origin;
+
     public int rows = 10;
     public int columns = 10;
     public float gridCellSize = 1f;
+
+    void Awake()
+    {
+        origin = transform.position;
+        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+
+        CalculateObstacles();
+    }
+
+    private void CalculateObstacles()
+    {
+        nodes = new Node[rows, columns];
+        int index = 0;
+
+        // (row, column) 사이즈의 노드 생성
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                var cellPos = GetGridCellCenter(index);
+                Node node = new Node(cellPos);
+                nodes[i, j] = node;
+                index++;
+            }
+        }
+
+        if (obstacles.Length > 0) // Grid 위에 장애물이 오브젝트가 있으면 해당 Node를 장애물로 설정정
+        {
+            foreach (var obstacle in obstacles)
+            {
+                int indexCell = GetGridIndex(obstacle.transform.position);
+                if (indexCell == -1)
+                    continue;
+                
+                int row = GetRow(indexCell);
+                int col = GetColumn(indexCell);
+                nodes[row, col].SetObstacle();
+            }
+        }
+    }
+
+    private Vector3 GetGridCellCenter(int index) // Grid의 중간 위치 확인용 
+    {
+        var cellPos = GetGridCellPosition(index);
+        cellPos.x = (cellPos.x + gridCellSize) / 2f;
+        cellPos.z = (cellPos.z + gridCellSize) / 2f;
+        return cellPos;
+    }
+
+    private Vector3 GetGridCellPosition(int index) // Grid의 위치 확인용 
+    {
+        int row = GetRow(index);
+        int col = GetColumn(index);
+
+        float posX = col * gridCellSize;
+        float posZ = row * gridCellSize;
+        
+        return origin + new Vector3(posX, 0f, posZ);
+    }
+
+    private int GetGridIndex(Vector3 pos)   // 특정 위치를 넣으면 몇 번째 노드인지 알려주는 기능
+    {
+        if (!IsInBounds(pos))
+            return -1;
+        
+        Vector3 localPos = pos - origin;
+
+        int col = (int)(localPos.x / gridCellSize);
+        int row = (int)(localPos.z / gridCellSize);
+
+        return row * columns + col;
+    }
+
+    public bool IsInBounds(Vector3 pos) // 특정 좌표가 Grid 안에 있는지 확인하는 기능
+    {
+        float width = columns * gridCellSize;
+        float height = rows * gridCellSize;
+
+        return pos.x >= origin.x && pos.x <= origin.x +width && pos.z >= origin.z && pos.z <= origin.z + height;
+    }
+
+    public int GetRow(int index)
+    {
+        return index / columns;
+    }
+
+    public int GetColumn(int index)
+    {
+        return index % columns;
+    }
+
+    public void GetNeighbors(Node node, List<Node> neighbors) // 현재 위치에서 주변 노드 검색하는 기능
+    {
+        int nodeIndex = GetGridIndex(node.pos);
+        if (nodeIndex == -1)
+            return;
+        
+        int row = GetRow(nodeIndex);
+        int col = GetColumn(nodeIndex);
+
+        // 4방향 이웃노드 확인 <-, ->, ^, v
+        AssignNeighbors(row - 1, col, neighbors);
+        AssignNeighbors(row + 1, col, neighbors);
+        AssignNeighbors(row, col - 1, neighbors);
+        AssignNeighbors(row, col + 1, neighbors);
+    }
+
+    public void AssignNeighbors(int row, int col, List<Node> neighbors) // 해당 노드에 대해 확인하는 기능
+    {
+        if (row >= 0 && col >= 0 && row < rows && col < columns)
+        {
+            Node nodeToAdd = nodes[row, col];
+
+            if (!nodeToAdd.isObstacle)
+                neighbors.Add(nodeToAdd);
+        }
+    }
+
+    public void ResetNodes()
+    {
+        foreach (var node in nodes)
+        {
+            node.nodeTotalCost = 0f;
+            node.estimateCost = 0f;
+            node.parent = null;
+        }
+    }
 
     void OnDrawGizmos()
     {
