@@ -37,7 +37,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        if (obstacles.Length > 0) // Grid 위에 장애물이 오브젝트가 있으면 해당 Node를 장애물로 설정정
+        if (obstacles != null && obstacles.Length > 0) // Grid 위에 장애물이 오브젝트가 있으면 해당 Node를 장애물로 설정정
         {
             foreach (var obstacle in obstacles)
             {
@@ -55,8 +55,8 @@ public class GridManager : MonoBehaviour
     private Vector3 GetGridCellCenter(int index) // Grid의 중간 위치 확인용 
     {
         var cellPos = GetGridCellPosition(index);
-        cellPos.x = (cellPos.x + gridCellSize) / 2f;
-        cellPos.z = (cellPos.z + gridCellSize) / 2f;
+        cellPos.x = cellPos.x + (gridCellSize / 2f);
+        cellPos.z = cellPos.z + (gridCellSize / 2f);
         return cellPos;
     }
 
@@ -71,7 +71,7 @@ public class GridManager : MonoBehaviour
         return origin + new Vector3(posX, 0f, posZ);
     }
 
-    private int GetGridIndex(Vector3 pos)   // 특정 위치를 넣으면 몇 번째 노드인지 알려주는 기능
+    public int GetGridIndex(Vector3 pos)   // 특정 위치를 넣으면 몇 번째 노드인지 알려주는 기능
     {
         if (!IsInBounds(pos))
             return -1;
