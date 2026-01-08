@@ -36,8 +36,6 @@ public class StudyFunc : MonoBehaviour
         Debug.Log($"총합: {result}");
 
         lookAtPlayer = CompareAngle;
-
-        ExternalClass.attackEvent += BackAttack;
     }
 
     /* public int AddMethod(int a, int b)
