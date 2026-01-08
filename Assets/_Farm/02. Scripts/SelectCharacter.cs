@@ -14,6 +14,8 @@ namespace Farm
         [SerializeField] private Button rightButton;
         [SerializeField] private Button selectButton;
 
+        // [SerializeField] private FadeEvent fadeEvent;
+
         private int characterIndex = 0;
 
         private bool isTurn;
@@ -65,6 +67,17 @@ namespace Farm
         private void Select()   // 현재 캐릭터를 선택하는 기능
         {
             DataManager.Instance.SelectCharacterIndex = characterIndex;
+            StartCoroutine(SelectRoutine());
+        }
+
+        IEnumerator SelectRoutine()
+        {
+            characterAnims[characterIndex].SetTrigger("Dance");
+            yield return new WaitForSeconds(5f);
+
+            FadeEvent.StartFade(3f, Color.black, true);
+            yield return new WaitForSeconds(3f);
+            Debug.Log("씬 전환환");
         }
 
         private IEnumerator Turn(Quaternion targetRot)
