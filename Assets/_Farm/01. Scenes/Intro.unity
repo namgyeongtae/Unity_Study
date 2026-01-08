@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 34972905}
   - component: {fileID: 34972904}
   m_Layer: 5
-  m_Name: ID
+  m_Name: '[InputField] ID'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 137976107}
   - component: {fileID: 137976106}
   m_Layer: 5
-  m_Name: Login
+  m_Name: '[Button] Login'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1012,8 +1012,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ID
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 60f99f568b84fbc4a91cfdaea1a3bc6c, type: 2}
+  m_sharedMaterial: {fileID: 3673912274076828124, guid: 60f99f568b84fbc4a91cfdaea1a3bc6c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1189,8 +1189,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 60f99f568b84fbc4a91cfdaea1a3bc6c, type: 2}
+  m_sharedMaterial: {fileID: 3673912274076828124, guid: 60f99f568b84fbc4a91cfdaea1a3bc6c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1346,8 +1346,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Password
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 60f99f568b84fbc4a91cfdaea1a3bc6c, type: 2}
+  m_sharedMaterial: {fileID: 3673912274076828124, guid: 60f99f568b84fbc4a91cfdaea1a3bc6c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1603,8 +1603,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Create
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 60f99f568b84fbc4a91cfdaea1a3bc6c, type: 2}
+  m_sharedMaterial: {fileID: 3673912274076828124, guid: 60f99f568b84fbc4a91cfdaea1a3bc6c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1768,7 +1768,7 @@ GameObject:
   - component: {fileID: 1826636523}
   - component: {fileID: 1826636522}
   m_Layer: 5
-  m_Name: CreateButton
+  m_Name: '[Button] CreateButton'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1889,7 +1889,7 @@ GameObject:
   - component: {fileID: 1993207075}
   - component: {fileID: 1993207074}
   m_Layer: 5
-  m_Name: Pasword
+  m_Name: '[InputField] Pasword'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1963,8 +1963,8 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
